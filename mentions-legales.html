@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions légales • Issam Thoumas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #1a3a52; --white: #ffffff; --text-dark: #333333;
+            --text-light: #666666; --orange: #E8932A; --bg-warm: #f5f0e8;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            line-height: 1.8; color: var(--text-dark); background: var(--bg-warm);
+        }
+        header {
+            position: sticky; top: 0; background: #faf8f5;
+            border-bottom: 1px solid rgba(212, 114, 58, 0.12); z-index: 1000; padding: 20px 40px;
+        }
+        .header-content {
+            max-width: 1200px; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem; font-weight: 800; color: var(--orange);
+            letter-spacing: 2px; text-transform: uppercase; word-spacing: 8px;
+        }
+        nav a {
+            text-decoration: none; color: var(--text-dark); font-weight: 500;
+            margin: 0 20px; transition: color 0.3s;
+        }
+        nav a:hover { color: var(--navy); }
+        .container {
+            max-width: 1000px; margin: 0 auto; padding: 60px 40px;
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 40px; color: var(--navy); }
+        h2 { font-size: 1.5rem; margin-top: 40px; margin-bottom: 20px; color: var(--navy); }
+        p { margin-bottom: 15px; }
+        strong { color: var(--navy); }
+        footer {
+            background: var(--navy); color: var(--white); padding: 40px; text-align: center; font-size: 0.9rem;
+        }
+        footer a { color: var(--orange); text-decoration: none; }
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; gap: 15px; }
+            .container { padding: 40px 20px; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Peinture Toulouse</a>
+            <nav>
+                <a href="index.html">Accueil</a>
+                <a href="politique-confidentialite.html">Confidentialité</a>
+                <a href="politique-cookies.html">Cookies</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Mentions Légales</h1>
+        <h2>Éditeur du site</h2>
+        <p><strong>Nom :</strong> Issam Thoumas<br>
+        <strong>Statut :</strong> Artisan peintre professionnel<br>
+        <strong>SIRET :</strong> 89280866800016<br>
+        <strong>Adresse :</strong> 12 Allée Henri de Toulouse Lautrec, 31770 Colomiers<br>
+        <strong>Téléphone :</strong> <a href="tel:0652845785">06 52 84 57 85</a><br>
+        <strong>Email :</strong> <a href="mailto:thoumas.issam@gmail.com">thoumas.issam@gmail.com</a></p>
+
+        <h2>Assurances et garanties</h2>
+        <p><strong>Responsabilité civile professionnelle :</strong> Souscrite et à jour<br>
+        <strong>Assurance décennale :</strong> Couverture complète garantie</p>
+
+        <h2>Hébergeur du site</h2>
+        <p><strong>Hébergeur :</strong> Vercel Inc.<br>
+        <strong>Adresse :</strong> 340 S Lemon Ave, Walnut, CA 91789, USA<br>
+        <strong>Site :</strong> <a href="https://vercel.com" target="_blank">vercel.com</a></p>
+
+        <h2>Propriété intellectuelle</h2>
+        <p>Tous les contenus présents sur ce site sont la propriété exclusive d'Issam Thoumas ou utilisés avec autorisation. Toute reproduction sans autorisation est interdite.</p>
+
+        <h2>Limitation de responsabilité</h2>
+        <p>Le site est fourni « en l'état ». Issam Thoumas ne peut être tenu responsable des dommages résultant de l'accès ou l'utilisation du site.</p>
+    </div>
+    <footer>
+        <p>&copy; 2026 Issam Thoumas • Peinture Professionnelle • Tous droits réservés</p>
+        <p style="margin-top: 10px; opacity: 0.8;">SIRET: 89280866800016 • RC Professionnelle • Assurance Décennale</p>
+    </footer>
+</body>
+</html>
