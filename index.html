@@ -121,6 +121,10 @@
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, var(--terracotta) 0%, var(--navy) 100%);
+            background-image: url('https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200&h=600&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             overflow: hidden;
         }
 
@@ -470,6 +474,53 @@
             right: 10px;
         }
 
+        /* ============ GALLERY / INSPIRATIONS ============ */
+        .gallery {
+            background: var(--bg-warm);
+            padding: 120px 40px;
+        }
+
+        .gallery-intro {
+            max-width: 700px;
+            margin: 0 auto 80px;
+            text-align: center;
+        }
+
+        .gallery-intro p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-top: 0;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            display: block;
+        }
+
         /* ============ ABOUT / PRÉSENTATION ============ */
         .about {
             background: var(--white);
@@ -750,6 +801,22 @@
             .hero {
                 height: 400px;
             }
+
+            .gallery {
+                padding: 80px 20px;
+            }
+
+            .gallery-grid {
+                gap: 30px;
+            }
+
+            .gallery-image {
+                height: 280px;
+            }
+
+            .gallery-intro p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -919,6 +986,30 @@
                         <h4>Salle de Bain Luxe</h4>
                         <p>Finition brillante et durabilité garantie sur tous les travaux.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIE INSPIRATIONS -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">Galerie • Inspirations & Réalisations</h2>
+            <div class="gallery-intro">
+                <p>Découvrez la diversité de nos projets : des espaces résidentiels transformés avec passion, où chaque couleur et chaque finition racontent une histoire.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1736580601998-5cbc03c5742c?w=600&h=400&fit=crop" alt="Salon lumineux et aéré" class="gallery-image">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/6782338/pexels-photo-6782338.jpeg?w=600&h=400&fit=crop" alt="Chambre claire et paisible" class="gallery-image">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop" alt="Cuisine moderne et fonctionnelle" class="gallery-image">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/19916730/pexels-photo-19916730/free-photo-of-mirror-in-a-bathroom.jpeg?w=600&h=400&fit=crop" alt="Salle de bain épurée" class="gallery-image">
                 </div>
             </div>
         </div>
