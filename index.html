@@ -402,6 +402,31 @@
             transform: scale(0.95);
         }
 
+        .avis-moyenne-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .avis-moyenne {
+            display: inline-block;
+            background: var(--bg-warm);
+            padding: 20px 30px;
+            border-radius: 10px;
+            border-bottom: 3px solid var(--orange);
+        }
+
+        .avis-moyenne-stars {
+            font-size: 1.5rem;
+            color: var(--orange);
+            margin-right: 12px;
+        }
+
+        .avis-moyenne-text {
+            color: var(--navy);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
         /* ============ WHY US ============ */
         .why-us {
             background: var(--white);
@@ -1151,9 +1176,15 @@
     <section class="avis-clients">
         <div class="container">
             <h2 class="section-title">Avis de nos clients</h2>
+            <div class="avis-moyenne-container">
+                <div class="avis-moyenne">
+                    <span class="avis-moyenne-stars" id="moyenneStars">★★★★★</span>
+                    <span class="avis-moyenne-text"><span id="moyenneNote">5.0</span> / 5 — <span id="nombreAvis">1</span> avis</span>
+                </div>
+            </div>
             <div class="avis-carousel">
                 <div class="avis-carousel-inner">
-                    <div class="avis-card">
+                    <div class="avis-card" data-note="5">
                         <div class="avis-stars">★★★★★</div>
                         <div class="avis-text">"Issam a réalisé des travaux de peinture chez moi pour rafraîchir une chambre et le salon. Extrêmement satisfait de son travail, de la communication avec lui et des delais respectés. Je recommande"</div>
                         <div class="avis-author">— Philippe Basset</div>
@@ -1169,6 +1200,25 @@
 
     <script>
         let avisIndex = 0;
+
+        function calculerMoyenne() {
+            const avis = document.querySelectorAll('.avis-card');
+            if (avis.length === 0) return;
+
+            let total = 0;
+            avis.forEach(card => {
+                const note = parseInt(card.getAttribute('data-note')) || 0;
+                total += note;
+            });
+
+            const moyenne = (total / avis.length).toFixed(1);
+            const stars = '★'.repeat(Math.round(moyenne)) + '☆'.repeat(5 - Math.round(moyenne));
+
+            document.getElementById('moyenneNote').textContent = moyenne;
+            document.getElementById('moyenneStars').textContent = stars;
+            document.getElementById('nombreAvis').textContent = avis.length;
+        }
+
         function showAvis() {
             const slides = document.querySelectorAll('.avis-card');
             if (slides.length === 0) return;
@@ -1177,15 +1227,19 @@
             slides.forEach(slide => slide.style.display = 'none');
             slides[avisIndex].style.display = 'block';
         }
+
         function avisNext() {
             avisIndex++;
             showAvis();
         }
+
         function avisPrev() {
             avisIndex--;
             showAvis();
         }
+
         showAvis();
+        calculerMoyenne();
     </script>
 
     <!-- À PROPOS / PRÉSENTATION -->
