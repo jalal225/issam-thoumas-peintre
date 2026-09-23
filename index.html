@@ -272,6 +272,46 @@
         .trust-avis-count {
             color: var(--text-light);
             font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .trust-avis-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-avis {
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            border: 2px solid var(--orange);
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-laisser {
+            background: var(--orange);
+            color: var(--white);
+        }
+
+        .btn-laisser:hover {
+            background: var(--orange-dark);
+            border-color: var(--orange-dark);
+        }
+
+        .btn-voir {
+            background: transparent;
+            color: var(--orange);
+        }
+
+        .btn-voir:hover {
+            background: var(--orange);
+            color: var(--white);
         }
 
         /* ============ WHY US ============ */
@@ -1010,6 +1050,10 @@
                     <div class="trust-avis-stars">★★★★★</div>
                     <div class="trust-avis-text">4.8 / 5</div>
                     <div class="trust-avis-count">12+ clients satisfaits</div>
+                    <div class="trust-avis-buttons">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxoGG-fjRDOkAu-grtMS_D8oIHCeDQW_Vij5Rps7W76ewFxg/viewform?usp=dialog" target="_blank" class="btn-avis btn-laisser">Laisser un avis</a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxoGG-fjRDOkAu-grtMS_D8oIHCeDQW_Vij5Rps7W76ewFxg/viewform?usp=dialog" target="_blank" class="btn-avis btn-voir">Voir les avis</a>
+                    </div>
                 </div>
             </div>
         </div>
