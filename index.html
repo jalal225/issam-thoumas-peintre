@@ -320,19 +320,34 @@
             padding: 80px 40px;
         }
 
-        .avis-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+        .avis-carousel {
+            position: relative;
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        .avis-carousel-inner {
+            position: relative;
+            min-height: 250px;
         }
 
         .avis-card {
+            display: none;
             background: var(--bg-warm);
-            padding: 30px;
+            padding: 40px;
             border-radius: 12px;
             border-left: 4px solid var(--orange);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .avis-card:first-child {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .avis-stars {
@@ -345,7 +360,7 @@
             font-size: 0.95rem;
             color: var(--text-dark);
             line-height: 1.7;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             font-style: italic;
         }
 
@@ -353,6 +368,38 @@
             color: var(--navy);
             font-weight: 600;
             font-size: 0.9rem;
+        }
+
+        .avis-controls {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .avis-btn {
+            background: var(--orange);
+            color: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avis-btn:hover {
+            background: var(--orange-dark);
+            transform: scale(1.1);
+        }
+
+        .avis-btn:active {
+            transform: scale(0.95);
         }
 
         /* ============ WHY US ============ */
@@ -1104,15 +1151,42 @@
     <section class="avis-clients">
         <div class="container">
             <h2 class="section-title">Avis de nos clients</h2>
-            <div class="avis-grid">
-                <div class="avis-card">
-                    <div class="avis-stars">★★★★★</div>
-                    <div class="avis-text">"Issam a réalisé des travaux de peinture chez moi pour rafraîchir une chambre et le salon. Extrêmement satisfait de son travail, de la communication avec lui et des delais respectés. Je recommande"</div>
-                    <div class="avis-author">— Philippe Basset</div>
+            <div class="avis-carousel">
+                <div class="avis-carousel-inner">
+                    <div class="avis-card">
+                        <div class="avis-stars">★★★★★</div>
+                        <div class="avis-text">"Issam a réalisé des travaux de peinture chez moi pour rafraîchir une chambre et le salon. Extrêmement satisfait de son travail, de la communication avec lui et des delais respectés. Je recommande"</div>
+                        <div class="avis-author">— Philippe Basset</div>
+                    </div>
+                </div>
+                <div class="avis-controls">
+                    <button class="avis-btn avis-prev" onclick="avisPrev()">‹</button>
+                    <button class="avis-btn avis-next" onclick="avisNext()">›</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        let avisIndex = 0;
+        function showAvis() {
+            const slides = document.querySelectorAll('.avis-card');
+            if (slides.length === 0) return;
+            if (avisIndex >= slides.length) avisIndex = 0;
+            if (avisIndex < 0) avisIndex = slides.length - 1;
+            slides.forEach(slide => slide.style.display = 'none');
+            slides[avisIndex].style.display = 'block';
+        }
+        function avisNext() {
+            avisIndex++;
+            showAvis();
+        }
+        function avisPrev() {
+            avisIndex--;
+            showAvis();
+        }
+        showAvis();
+    </script>
 
     <!-- À PROPOS / PRÉSENTATION -->
     <section class="about" id="about">
