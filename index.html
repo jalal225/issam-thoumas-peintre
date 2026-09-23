@@ -314,6 +314,47 @@
             color: var(--white);
         }
 
+        /* ============ AVIS CLIENTS ============ */
+        .avis-clients {
+            background: var(--white);
+            padding: 80px 40px;
+        }
+
+        .avis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .avis-card {
+            background: var(--bg-warm);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--orange);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .avis-stars {
+            font-size: 1.3rem;
+            color: var(--orange);
+            margin-bottom: 16px;
+        }
+
+        .avis-text {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .avis-author {
+            color: var(--navy);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
         /* ============ WHY US ============ */
         .why-us {
             background: var(--white);
@@ -1054,6 +1095,20 @@
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxoGG-fjRDOkAu-grtMS_D8oIHCeDQW_Vij5Rps7W76ewFxg/viewform?usp=dialog" target="_blank" class="btn-avis btn-laisser">Laisser un avis</a>
                         <a href="https://docs.google.com/spreadsheets/d/1N9EC5_MS1cSU8iu7ufQmXVsZGkODKR8uers_Q1x3klM/edit?usp=sharing" target="_blank" class="btn-avis btn-voir">Voir les avis</a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AVIS CLIENTS -->
+    <section class="avis-clients">
+        <div class="container">
+            <h2 class="section-title">Avis de nos clients</h2>
+            <div class="avis-grid">
+                <div class="avis-card">
+                    <div class="avis-stars">★★★★★</div>
+                    <div class="avis-text">"Issam a réalisé des travaux de peinture chez moi pour rafraîchir une chambre et le salon. Extrêmement satisfait de son travail, de la communication avec lui et des delais respectés. Je recommande"</div>
+                    <div class="avis-author">— Philippe Basset</div>
                 </div>
             </div>
         </div>
