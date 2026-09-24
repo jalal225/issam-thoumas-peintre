@@ -942,7 +942,7 @@
             }
 
             .container {
-                padding: 0 15px;
+                padding: 0 10px;
             }
 
             .about-text h2 {
@@ -1031,13 +1031,13 @@
             /* Why Us / Services Responsive */
             .why-us,
             .services {
-                padding: 40px 15px;
+                padding: 40px 10px;
             }
 
             .why-grid {
                 grid-template-columns: 1fr;
-                gap: 15px;
-                margin-top: 30px;
+                gap: 12px;
+                margin-top: 25px;
             }
 
             .why-card {
@@ -1083,18 +1083,18 @@
         /* Extra small screens */
         @media (max-width: 480px) {
             .header-content {
-                padding: 10px 10px;
+                padding: 10px 8px;
             }
 
             .logo {
                 margin-left: 0 !important;
-                font-size: 1.1rem;
-                letter-spacing: 1px;
-                word-spacing: 4px;
+                font-size: 1rem;
+                letter-spacing: 0.5px;
+                word-spacing: 3px;
             }
 
             .container {
-                padding: 0 12px;
+                padding: 0 8px !important;
             }
 
             .trust-signals,
@@ -1102,7 +1102,7 @@
             .services,
             .about,
             .contact {
-                padding: 35px 12px;
+                padding: 35px 8px;
             }
 
             .section-title {
@@ -1190,22 +1190,30 @@
 
         /* Landscape mode */
         @media (max-height: 500px) {
+            .header-content {
+                padding: 10px 12px;
+            }
+
+            .container {
+                padding: 0 8px !important;
+            }
+
             .hero {
-                height: 250px;
+                height: 200px;
             }
 
             .hero-content h1 {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
 
             .hero-content p {
-                font-size: 0.85rem;
-                margin-bottom: 15px;
+                font-size: 0.8rem;
+                margin-bottom: 10px;
             }
 
             .section-title {
-                font-size: 1.3rem;
-                margin-bottom: 20px;
+                font-size: 1.2rem;
+                margin-bottom: 15px;
             }
 
             .trust-signals,
@@ -1213,41 +1221,38 @@
             .services,
             .about,
             .contact {
-                padding: 30px 15px;
+                padding: 25px 8px !important;
             }
 
             .trust-grid,
             .why-grid,
             .services-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-                margin-top: 15px;
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+                margin-top: 10px;
             }
 
             .trust-card,
             .why-card,
-            .service-card {
-                padding: 15px;
-            }
-
+            .service-card,
             .trust-avis {
-                padding: 15px;
+                padding: 12px !important;
             }
 
             .gallery-grid {
-                gap: 15px;
+                gap: 10px;
             }
 
             .gallery-image {
-                height: 150px;
+                height: 120px;
             }
 
             .avis-carousel-inner {
-                min-height: 150px;
+                min-height: 130px;
             }
 
             .avis-card {
-                padding: 15px;
+                padding: 12px !important;
             }
         }
     </style>
