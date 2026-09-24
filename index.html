@@ -24,6 +24,10 @@
             box-sizing: border-box;
         }
 
+        *::-webkit-scrollbar {
+            display: none;
+        }
+
         :root {
             --navy: #1a3a52;
             --white: #ffffff;
@@ -47,6 +51,9 @@
             line-height: 1.6;
             color: var(--text-dark);
             background: #d8cfc0;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
         }
 
         /* ============ HEADER ============ */
@@ -907,8 +914,8 @@
             }
 
             .logo {
-                margin-left: 0;
-                font-size: 1.4rem;
+                margin-left: 0 !important;
+                font-size: 1.2rem;
             }
 
             .hero-content h1 {
@@ -935,7 +942,7 @@
             }
 
             .container {
-                padding: 0 20px;
+                padding: 0 15px;
             }
 
             .about-text h2 {
@@ -981,6 +988,267 @@
             .gallery-intro p {
                 font-size: 1rem;
             }
+
+            /* Trust Signals Responsive */
+            .trust-signals {
+                padding: 40px 15px;
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-top: 30px;
+            }
+
+            .trust-card {
+                padding: 18px;
+            }
+
+            .trust-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .trust-card p {
+                font-size: 0.9rem;
+            }
+
+            .trust-avis {
+                padding: 18px;
+            }
+
+            .trust-avis-stars {
+                font-size: 1.5rem;
+            }
+
+            .trust-avis-text {
+                font-size: 1rem;
+            }
+
+            .trust-avis-buttons {
+                gap: 8px;
+            }
+
+            /* Why Us / Services Responsive */
+            .why-us,
+            .services {
+                padding: 40px 15px;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-top: 30px;
+            }
+
+            .why-card {
+                padding: 20px;
+            }
+
+            .why-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-top: 30px;
+            }
+
+            .service-card {
+                padding: 20px;
+            }
+
+            .service-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .service-card p {
+                font-size: 0.9rem;
+            }
+
+            /* Hero responsive */
+            .hero-content {
+                padding: 25px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 10px 10px;
+            }
+
+            .logo {
+                margin-left: 0 !important;
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+                word-spacing: 4px;
+            }
+
+            .container {
+                padding: 0 12px;
+            }
+
+            .trust-signals,
+            .why-us,
+            .services,
+            .about,
+            .contact {
+                padding: 35px 12px;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+                margin-bottom: 25px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.6rem;
+            }
+
+            .trust-grid,
+            .why-grid,
+            .services-grid {
+                gap: 12px;
+                margin-top: 25px;
+            }
+
+            .trust-card,
+            .why-card,
+            .service-card,
+            .trust-avis {
+                padding: 15px;
+            }
+
+            .btn-primary,
+            .btn-phone {
+                font-size: 0.9rem;
+                padding: 12px 20px !important;
+            }
+
+            .gallery {
+                padding: 35px 12px;
+            }
+
+            .gallery-image {
+                height: 180px;
+            }
+
+            .gallery-grid {
+                gap: 12px;
+            }
+
+            form {
+                padding: 20px 12px;
+            }
+
+            .form-row {
+                gap: 8px;
+            }
+
+            input,
+            textarea,
+            select {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .avis-carousel {
+                max-width: calc(100% - 20px);
+                margin: 20px 10px;
+            }
+
+            .avis-card {
+                padding: 18px;
+            }
+
+            .avis-stars {
+                font-size: 1.1rem;
+            }
+
+            .avis-text {
+                font-size: 0.88rem;
+            }
+
+            .avis-carousel-inner {
+                min-height: 180px;
+            }
+
+            .avis-controls button {
+                padding: 6px 10px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Landscape mode */
+        @media (max-height: 500px) {
+            .hero {
+                height: 250px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-content p {
+                font-size: 0.85rem;
+                margin-bottom: 15px;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+            }
+
+            .trust-signals,
+            .why-us,
+            .services,
+            .about,
+            .contact {
+                padding: 30px 15px;
+            }
+
+            .trust-grid,
+            .why-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                margin-top: 15px;
+            }
+
+            .trust-card,
+            .why-card,
+            .service-card {
+                padding: 15px;
+            }
+
+            .trust-avis {
+                padding: 15px;
+            }
+
+            .gallery-grid {
+                gap: 15px;
+            }
+
+            .gallery-image {
+                height: 150px;
+            }
+
+            .avis-carousel-inner {
+                min-height: 150px;
+            }
+
+            .avis-card {
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -1024,7 +1292,7 @@
                     <p>Réactivité maximale pour vos demandes urgentes et projets pressants.</p>
                 </div>
                 <div class="trust-card">
-                    <h3>👨‍💼 6+ ans d'expérience</h3>
+                    <h3>👨‍💼 16+ ans d'expérience</h3>
                     <p>Expertise confirmée en peinture intérieure, décoration et revêtements.</p>
                 </div>
             </div>
@@ -1313,12 +1581,12 @@
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
-            <h3>Issam Thoumas • Peinture Professionnelle</h3>
+            <h3>Entreprise Thomas Issam (ETS) - Thoumas Issam • Peinture Professionnelle</h3>
             <p>12 Allée Henri de Toulouse Lautrec • 31770 Colomiers</p>
             <p>📞 <a href="tel:0652845785">06 52 84 57 85</a> • 📧 <a href="mailto:thoumas.issam@gmail.com">thoumas.issam@gmail.com</a></p>
             <p style="margin-top: 20px; opacity: 0.8;">SIRET: 89280866800016 • RC Professionnelle • Assurance Décennale</p>
             <div style="margin-top: 20px; font-size: 0.85rem; opacity: 0.7;">
-                <p>&copy; 2026 Issam Thoumas • Tous droits réservés</p>
+                <p>&copy; 2026 Entreprise Thomas Issam (ETS) - Thoumas Issam • Tous droits réservés</p>
                 <p style="margin-top: 12px;">
                     <a href="mentions-legales.html" style="margin-right: 20px;">Mentions légales</a>
                     <a href="politique-confidentialite.html" style="margin-right: 20px;">Confidentialité</a>
