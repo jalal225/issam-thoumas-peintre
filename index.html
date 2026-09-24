@@ -1198,7 +1198,22 @@
         /* Landscape mode */
         @media (max-height: 500px) {
             .header-content {
-                padding: 10px 12px;
+                padding: 8px 12px;
+                flex-direction: row !important;
+                gap: 20px;
+            }
+
+            nav {
+                flex-direction: row !important;
+                gap: 10px;
+                width: auto;
+                font-size: 0.85rem;
+            }
+
+            .logo {
+                font-size: 1rem !important;
+                word-spacing: 2px;
+                letter-spacing: 0px;
             }
 
             .container {
@@ -1268,7 +1283,7 @@
     <!-- HEADER -->
     <header>
         <div class="header-content">
-            <div class="logo">Peinture Toulouse</div>
+            <div class="logo">ETS. Thoumas Issam</div>
             <nav>
                 <a href="#services">Services</a>
                 <a href="#portfolio">Portfolio</a>
