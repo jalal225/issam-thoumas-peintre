@@ -1561,28 +1561,28 @@
     <section class="contact" id="contact">
         <div class="contact-content">
             <h2>Demander un Devis Gratuit</h2>
-            <form>
+            <form action="https://getform.io/f/w7zh4yuzxm2" method="POST">
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">Prénom *</label>
-                        <input type="text" class="form-input" required>
+                        <input type="text" name="prenom" class="form-input" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Nom *</label>
-                        <input type="text" class="form-input" required>
+                        <input type="text" name="nom" class="form-input" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Téléphone *</label>
-                    <input type="tel" class="form-input" required>
+                    <input type="tel" name="telephone" class="form-input" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-input">
+                    <input type="email" name="email" class="form-input">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Type de travaux *</label>
-                    <select class="form-select" required>
+                    <select name="type_travaux" class="form-select" required>
                         <option value="">-- Sélectionner --</option>
                         <option value="peinture">Peinture intérieure</option>
                         <option value="decoration">Décoration</option>
@@ -1592,7 +1592,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Description du projet</label>
-                    <textarea class="form-textarea" placeholder="Décrivez votre projet..."></textarea>
+                    <textarea name="description" class="form-textarea" placeholder="Décrivez votre projet..."></textarea>
                 </div>
                 <button type="submit" class="btn-primary form-submit">Envoyer ma demande</button>
             </form>
