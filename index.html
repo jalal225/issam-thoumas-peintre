@@ -17,6 +17,9 @@
         });
     </script>
 
+    <!-- Forminit SDK -->
+    <script src="https://forminit.com/sdk/v1/forminit.js"></script>
+
     <style>
         * {
             margin: 0;
@@ -1561,15 +1564,15 @@
     <section class="contact" id="contact">
         <div class="contact-content">
             <h2>Demander un Devis Gratuit</h2>
-            <form action="https://getform.io/f/w7zh4yuzxm2" method="POST">
+            <form id="contact-form">
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">Prénom *</label>
-                        <input type="text" name="fi-text-prenom" class="form-input" required>
+                        <input type="text" name="fi-sender-firstName" class="form-input" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Nom *</label>
-                        <input type="text" name="fi-text-nom" class="form-input" required>
+                        <input type="text" name="fi-sender-lastName" class="form-input" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -1592,10 +1595,11 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Description du projet</label>
-                    <textarea name="fi-textarea-description" class="form-textarea" placeholder="Décrivez votre projet..."></textarea>
+                    <textarea name="fi-text-description" class="form-textarea" placeholder="Décrivez votre projet..."></textarea>
                 </div>
                 <button type="submit" class="btn-primary form-submit">Envoyer ma demande</button>
             </form>
+            <p id="form-status" style="margin-top: 20px; text-align: center; font-weight: 500; display: none;"></p>
             <div class="contact-info">
                 <h3>Ou contactez-moi directement</h3>
                 <p>📞 <a href="tel:0652845785">06 52 84 57 85</a></p>
@@ -1659,6 +1663,30 @@
         // Initialize
         baImgAfter.style.width = '50%';
         baSliderHandle.style.left = '50%';
+
+        // Forminit Contact Form
+        const forminit = new Forminit();
+        const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            formStatus.textContent = 'Envoi en cours...';
+            formStatus.style.display = 'block';
+            formStatus.style.color = '#666';
+
+            const { data, error } = await forminit.submit('w7zh4yuzxm2', new FormData(e.target));
+
+            if (error) {
+                formStatus.textContent = 'Erreur : ' + error.message;
+                formStatus.style.color = '#d9534f';
+                return;
+            }
+
+            formStatus.textContent = 'Merci ! Votre demande a été envoyée avec succès. Nous vous répondrons sous 48h.';
+            formStatus.style.color = '#5cb85c';
+            e.target.reset();
+        });
     </script>
 </body>
 </html>
