@@ -1665,27 +1665,31 @@
         baSliderHandle.style.left = '50%';
 
         // Forminit Contact Form
-        const forminit = new Forminit();
-        const contactForm = document.getElementById('contact-form');
-        const formStatus = document.getElementById('form-status');
+        document.addEventListener('DOMContentLoaded', function() {
+            const forminit = new Forminit();
+            const contactForm = document.getElementById('contact-form');
+            const formStatus = document.getElementById('form-status');
 
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            formStatus.textContent = 'Envoi en cours...';
-            formStatus.style.display = 'block';
-            formStatus.style.color = '#666';
+            if (contactForm && formStatus) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    formStatus.textContent = 'Envoi en cours...';
+                    formStatus.style.display = 'block';
+                    formStatus.style.color = '#666';
 
-            const { data, error } = await forminit.submit('w7zh4yuzxm2', new FormData(e.target));
+                    const { data, error } = await forminit.submit('w7zh4yuzxm2', new FormData(e.target));
 
-            if (error) {
-                formStatus.textContent = 'Erreur : ' + error.message;
-                formStatus.style.color = '#d9534f';
-                return;
+                    if (error) {
+                        formStatus.textContent = 'Erreur : ' + error.message;
+                        formStatus.style.color = '#d9534f';
+                        return;
+                    }
+
+                    formStatus.textContent = 'Merci ! Votre demande a été envoyée avec succès. Nous vous répondrons sous 48h.';
+                    formStatus.style.color = '#5cb85c';
+                    e.target.reset();
+                });
             }
-
-            formStatus.textContent = 'Merci ! Votre demande a été envoyée avec succès. Nous vous répondrons sous 48h.';
-            formStatus.style.color = '#5cb85c';
-            e.target.reset();
         });
     </script>
 </body>
