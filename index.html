@@ -1564,7 +1564,7 @@
     <section class="contact" id="contact">
         <div class="contact-content">
             <h2>Demander un Devis Gratuit</h2>
-            <form id="contact-form">
+            <form id="contact-form" method="POST">
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">Prénom *</label>
@@ -1665,32 +1665,46 @@
         baSliderHandle.style.left = '50%';
 
         // Forminit Contact Form
-        document.addEventListener('DOMContentLoaded', function() {
-            const forminit = new Forminit();
+        function initContactForm() {
             const contactForm = document.getElementById('contact-form');
             const formStatus = document.getElementById('form-status');
 
-            if (contactForm && formStatus) {
-                contactForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    formStatus.textContent = 'Envoi en cours...';
-                    formStatus.style.display = 'block';
-                    formStatus.style.color = '#666';
+            if (!contactForm || !formStatus) return;
 
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                formStatus.textContent = 'Envoi en cours...';
+                formStatus.style.display = 'block';
+                formStatus.style.color = '#666';
+
+                try {
+                    if (typeof Forminit === 'undefined') {
+                        throw new Error('Service indisponible. Veuillez réessayer.');
+                    }
+
+                    const forminit = new Forminit();
                     const { data, error } = await forminit.submit('w7zh4yuzxm2', new FormData(e.target));
 
                     if (error) {
-                        formStatus.textContent = 'Erreur : ' + error.message;
-                        formStatus.style.color = '#d9534f';
-                        return;
+                        throw new Error(error.message || 'Erreur lors de l\'envoi');
                     }
 
                     formStatus.textContent = 'Merci ! Votre demande a été envoyée avec succès. Nous vous répondrons sous 48h.';
                     formStatus.style.color = '#5cb85c';
                     e.target.reset();
-                });
-            }
-        });
+                } catch (err) {
+                    formStatus.textContent = 'Erreur : ' + (err.message || 'Impossible d\'envoyer le formulaire');
+                    formStatus.style.color = '#d9534f';
+                }
+            });
+        }
+
+        // Initialiser quand le DOM est prêt
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initContactForm);
+        } else {
+            initContactForm();
+        }
     </script>
 </body>
 </html>
