@@ -18,7 +18,8 @@
 | **SIRET** | 89280866800016 |
 | **Domaine** | `peinture-toulouse-31.fr` (à réserver) |
 | **Métier** | Peintre pro : intérieur, décoration, revêtements sol |
-| **Expérience** | 6+ ans |
+| **Expérience** | 16+ ans |
+| **Email leads** | contact@solveria.fr (Jalal) |
 
 ---
 
@@ -59,14 +60,17 @@ Mix Diesel (minimaliste) + Singletrack (moderne) + **Hedlund** (CTA rapide sous 
 
 ## ✅ À Faire Avant Déploiement
 
-- [ ] Réserver domaine `peinture-toulouse-31.fr`
-- [ ] Déployer 4 fichiers HTML sur Vercel (site + 3 pages légales)
+- [x] Réserver domaine `peinture-toulouse-31.fr`
+- [x] Déployer 4 fichiers HTML sur Vercel (site + 3 pages légales)
 - [ ] Remplacer [Image projet X] par vraies photos Issam (6 images)
 - [ ] Remplacer [Photo Issam] par photo About réelle
+- [ ] **[NEXT] Formulaire contact fonctionnel**
+  - [ ] Créer clé API Brevo gratuite (sur brevo.com)
+  - [ ] Créer fonction serverless Vercel `/api/contact.js`
+  - [ ] Envoyer emails à **contact@solveria.fr** (Jalal)
 - [ ] Tester formulaire sur navigateurs (Chrome, Firefox, Safari, Mobile)
 - [ ] Vérifier Google Analytics reçoit data (attendre 24-48h après déploiement)
 - [ ] Mettre en place Google My Business
-- [ ] Connecter formulaire à n8n (SMS/Email)
 
 ---
 
