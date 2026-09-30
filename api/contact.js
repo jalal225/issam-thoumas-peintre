@@ -52,8 +52,8 @@ ${description ? `Description:\n${description}` : ''}
     console.log('[API] Sending email via Brevo...');
     const brevoPayload = {
       sender: {
-        name: 'Issam Peinture',
-        email: 'noreply@issam-peinture.fr',
+        name: 'Solveria',
+        email: 'j.seferdjeli@gmail.com',
       },
       to: [
         {
