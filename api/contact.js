@@ -50,7 +50,7 @@ export default async function handler(req, res) {
     logs.push('Preparing Resend payload...');
     const resendPayload = {
       from: 'onboarding@resend.dev',
-      to: 'delivered@resend.dev',
+      to: 'd.jale@yahoo.fr',
       subject: `[TEST] Nouvelle demande de devis - ${nom} ${prenom}`,
       html: htmlContent,
     };
