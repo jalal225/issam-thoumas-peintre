@@ -1630,9 +1630,11 @@
     <script>
         // Before/After Slider
         const baSlider = document.getElementById('baSlider');
-        const baSliderHandle = document.getElementById('baSliderHandle');
-        const baImgAfter = baSlider.querySelector('.ba-img-after');
-        let isActive = false;
+
+        if (baSlider) {
+            const baSliderHandle = document.getElementById('baSliderHandle');
+            const baImgAfter = baSlider.querySelector('.ba-img-after');
+            let isActive = false;
 
         function updateSlider(e) {
             if (!isActive && e.type !== 'touchstart') return;
@@ -1660,9 +1662,10 @@
         document.addEventListener('mousemove', updateSlider);
         document.addEventListener('touchmove', updateSlider);
 
-        // Initialize
-        baImgAfter.style.width = '50%';
-        baSliderHandle.style.left = '50%';
+            // Initialize
+            baImgAfter.style.width = '50%';
+            baSliderHandle.style.left = '50%';
+        }
 
         // Contact Form Handler
         function initContactForm() {
