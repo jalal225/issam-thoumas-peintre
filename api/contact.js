@@ -1,4 +1,8 @@
 export default async function handler(req, res) {
+  console.log('[API] Contact form request received');
+  console.log('[API] Method:', req.method);
+  console.log('[API] Body:', req.body);
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Méthode non autorisée' });
   }
@@ -6,15 +10,20 @@ export default async function handler(req, res) {
   try {
     const { 'fi-sender-firstName': prenom, 'fi-sender-lastName': nom, 'fi-sender-phone': telephone, 'fi-sender-email': email, 'fi-select-type_travaux': typeTravaux, 'fi-text-description': description } = req.body;
 
+    console.log('[API] Extracted fields:', { prenom, nom, telephone, email, typeTravaux });
+
     // Validation basique
     if (!prenom || !nom || !telephone || !typeTravaux) {
+      console.error('[API] Validation failed - missing required fields');
       return res.status(400).json({ error: 'Champs obligatoires manquants' });
     }
 
     const brevoApiKey = process.env.BREVO_API_KEY;
+    console.log('[API] Brevo API Key exists:', !!brevoApiKey);
+
     if (!brevoApiKey) {
-      console.error('BREVO_API_KEY non configurée');
-      return res.status(500).json({ error: 'Service indisponible' });
+      console.error('[API] BREVO_API_KEY not configured');
+      return res.status(500).json({ error: 'Service indisponible - API key manquante' });
     }
 
     // Construire le HTML de l'email
@@ -40,38 +49,48 @@ ${description ? `Description:\n${description}` : ''}
     `;
 
     // Envoyer via Brevo API
+    console.log('[API] Sending email via Brevo...');
+    const brevoPayload = {
+      sender: {
+        name: 'Issam Peinture',
+        email: 'noreply@issam-peinture.fr',
+      },
+      to: [
+        {
+          email: 'contact@solveria.fr',
+          name: 'Jalal',
+        },
+      ],
+      subject: `Nouvelle demande de devis - ${nom} ${prenom}`,
+      htmlContent,
+      textContent,
+    };
+
+    console.log('[API] Brevo payload:', JSON.stringify(brevoPayload, null, 2));
+
     const brevoResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
         'api-key': brevoApiKey,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        sender: {
-          name: 'Issam Peinture',
-          email: 'noreply@issam-peinture.fr',
-        },
-        to: [
-          {
-            email: 'contact@solveria.fr',
-            name: 'Jalal',
-          },
-        ],
-        subject: `Nouvelle demande de devis - ${nom} ${prenom}`,
-        htmlContent,
-        textContent,
-      }),
+      body: JSON.stringify(brevoPayload),
     });
+
+    console.log('[API] Brevo response status:', brevoResponse.status);
 
     if (!brevoResponse.ok) {
       const errorData = await brevoResponse.text();
-      console.error('Brevo API error:', errorData);
-      return res.status(500).json({ error: 'Erreur lors de l\'envoi de l\'email' });
+      console.error('[API] Brevo error response:', errorData);
+      return res.status(500).json({ error: 'Erreur Brevo: ' + errorData });
     }
+
+    const brevoResult = await brevoResponse.json();
+    console.log('[API] Brevo success:', brevoResult);
 
     return res.status(200).json({ success: true, message: 'Email envoyé avec succès' });
   } catch (error) {
-    console.error('Error in contact form:', error);
-    return res.status(500).json({ error: 'Erreur serveur' });
+    console.error('[API] Error in contact form:', error);
+    return res.status(500).json({ error: 'Erreur serveur: ' + error.message });
   }
 }

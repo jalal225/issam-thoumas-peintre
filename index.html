@@ -1564,7 +1564,7 @@
     <section class="contact" id="contact">
         <div class="contact-content">
             <h2>Demander un Devis Gratuit</h2>
-            <form id="contact-form" method="POST" action="/api/contact">
+            <form id="contact-form">
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">Prénom *</label>
@@ -1666,13 +1666,25 @@
 
         // Contact Form Handler
         function initContactForm() {
+            console.log('[Contact Form] Initializing...');
             const contactForm = document.getElementById('contact-form');
             const formStatus = document.getElementById('form-status');
 
-            if (!contactForm || !formStatus) return;
+            if (!contactForm) {
+                console.error('[Contact Form] Form element not found');
+                return;
+            }
+            if (!formStatus) {
+                console.error('[Contact Form] Form status element not found');
+                return;
+            }
+
+            console.log('[Contact Form] Attaching submit handler...');
 
             contactForm.addEventListener('submit', async (e) => {
+                console.log('[Contact Form] Submit event triggered');
                 e.preventDefault();
+
                 formStatus.textContent = 'Envoi en cours...';
                 formStatus.style.display = 'block';
                 formStatus.style.color = '#666';
@@ -1685,6 +1697,8 @@
                         data[key] = value;
                     }
 
+                    console.log('[Contact Form] Sending data:', data);
+
                     // Envoyer à l'API
                     const response = await fetch('/api/contact', {
                         method: 'POST',
@@ -1694,23 +1708,31 @@
                         body: JSON.stringify(data),
                     });
 
+                    console.log('[Contact Form] Response status:', response.status);
+
                     if (!response.ok) {
                         const errorData = await response.json();
                         throw new Error(errorData.error || 'Erreur lors de l\'envoi');
                     }
 
+                    const result = await response.json();
+                    console.log('[Contact Form] Success:', result);
+
                     formStatus.textContent = 'Merci ! Votre demande a été envoyée avec succès. Nous vous répondrons sous 48h.';
                     formStatus.style.color = '#5cb85c';
                     e.target.reset();
                 } catch (err) {
+                    console.error('[Contact Form] Error:', err);
                     formStatus.textContent = 'Erreur : ' + (err.message || 'Impossible d\'envoyer le formulaire');
                     formStatus.style.color = '#d9534f';
-                    console.error('Form error:', err);
                 }
             });
+
+            console.log('[Contact Form] Initialized successfully');
         }
 
         // Initialiser quand le DOM est prêt
+        console.log('[Contact Form] Script loaded, document state:', document.readyState);
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initContactForm);
         } else {
