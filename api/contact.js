@@ -18,11 +18,11 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Champs obligatoires manquants' });
     }
 
-    const brevoApiKey = process.env.BREVO_API_KEY;
-    console.log('[API] Brevo API Key exists:', !!brevoApiKey);
+    const resendApiKey = process.env.RESEND_API_KEY;
+    console.log('[API] Resend API Key exists:', !!resendApiKey);
 
-    if (!brevoApiKey) {
-      console.error('[API] BREVO_API_KEY not configured');
+    if (!resendApiKey) {
+      console.error('[API] RESEND_API_KEY not configured');
       return res.status(500).json({ error: 'Service indisponible - API key manquante' });
     }
 
@@ -37,56 +37,36 @@ export default async function handler(req, res) {
       ${description ? `<p><strong>Description:</strong></p><p>${description.replace(/\n/g, '<br>')}</p>` : ''}
     `;
 
-    const textContent = `
-Nouvelle demande de devis
-
-Prénom: ${prenom}
-Nom: ${nom}
-Téléphone: ${telephone}
-${email ? `Email: ${email}` : ''}
-Type de travaux: ${typeTravaux}
-${description ? `Description:\n${description}` : ''}
-    `;
-
-    // Envoyer via Brevo API
-    console.log('[API] Sending email via Brevo...');
-    const brevoPayload = {
-      sender: {
-        name: 'Solveria',
-        email: 'j.seferdjeli@gmail.com',
-      },
-      to: [
-        {
-          email: 'contact@solveria.fr',
-          name: 'Jalal',
-        },
-      ],
+    // Envoyer via Resend API
+    console.log('[API] Sending email via Resend...');
+    const resendPayload = {
+      from: 'noreply@issam-peinture.fr',
+      to: 'contact@solveria.fr',
       subject: `Nouvelle demande de devis - ${nom} ${prenom}`,
-      htmlContent,
-      textContent,
+      html: htmlContent,
     };
 
-    console.log('[API] Brevo payload:', JSON.stringify(brevoPayload, null, 2));
+    console.log('[API] Resend payload:', JSON.stringify(resendPayload, null, 2));
 
-    const brevoResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
+    const resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'api-key': brevoApiKey,
+        'Authorization': `Bearer ${resendApiKey}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(brevoPayload),
+      body: JSON.stringify(resendPayload),
     });
 
-    console.log('[API] Brevo response status:', brevoResponse.status);
+    console.log('[API] Resend response status:', resendResponse.status);
 
-    if (!brevoResponse.ok) {
-      const errorData = await brevoResponse.text();
-      console.error('[API] Brevo error response:', errorData);
-      return res.status(500).json({ error: 'Erreur Brevo: ' + errorData });
+    if (!resendResponse.ok) {
+      const errorData = await resendResponse.text();
+      console.error('[API] Resend error response:', errorData);
+      return res.status(500).json({ error: 'Erreur Resend: ' + errorData });
     }
 
-    const brevoResult = await brevoResponse.json();
-    console.log('[API] Brevo success:', brevoResult);
+    const resendResult = await resendResponse.json();
+    console.log('[API] Resend success:', resendResult);
 
     return res.status(200).json({ success: true, message: 'Email envoyé avec succès' });
   } catch (error) {
