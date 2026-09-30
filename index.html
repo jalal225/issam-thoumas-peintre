@@ -1564,7 +1564,7 @@
     <section class="contact" id="contact">
         <div class="contact-content">
             <h2>Demander un Devis Gratuit</h2>
-            <form id="contact-form" method="POST">
+            <form id="contact-form" method="POST" action="/api/contact">
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">Prénom *</label>
@@ -1664,7 +1664,7 @@
         baImgAfter.style.width = '50%';
         baSliderHandle.style.left = '50%';
 
-        // Forminit Contact Form
+        // Contact Form Handler
         function initContactForm() {
             const contactForm = document.getElementById('contact-form');
             const formStatus = document.getElementById('form-status');
@@ -1678,15 +1678,25 @@
                 formStatus.style.color = '#666';
 
                 try {
-                    if (typeof Forminit === 'undefined') {
-                        throw new Error('Service indisponible. Veuillez réessayer.');
+                    // Récupérer les données du formulaire
+                    const formData = new FormData(e.target);
+                    const data = {};
+                    for (let [key, value] of formData.entries()) {
+                        data[key] = value;
                     }
 
-                    const forminit = new Forminit();
-                    const { data, error } = await forminit.submit('w7zh4yuzxm2', new FormData(e.target));
+                    // Envoyer à l'API
+                    const response = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data),
+                    });
 
-                    if (error) {
-                        throw new Error(error.message || 'Erreur lors de l\'envoi');
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || 'Erreur lors de l\'envoi');
                     }
 
                     formStatus.textContent = 'Merci ! Votre demande a été envoyée avec succès. Nous vous répondrons sous 48h.';
@@ -1695,6 +1705,7 @@
                 } catch (err) {
                     formStatus.textContent = 'Erreur : ' + (err.message || 'Impossible d\'envoyer le formulaire');
                     formStatus.style.color = '#d9534f';
+                    console.error('Form error:', err);
                 }
             });
         }
