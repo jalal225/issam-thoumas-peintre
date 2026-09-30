@@ -40,7 +40,7 @@ export default async function handler(req, res) {
     // Envoyer via Resend API
     console.log('[API] Sending email via Resend...');
     const resendPayload = {
-      from: 'noreply@issam-peinture.fr',
+      from: 'onboarding@resend.dev',
       to: 'contact@solveria.fr',
       subject: `Nouvelle demande de devis - ${nom} ${prenom}`,
       html: htmlContent,
