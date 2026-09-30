@@ -1717,6 +1717,9 @@
 
                     const result = await response.json();
                     console.log('[Contact Form] Success:', result);
+                    if (result.logs) {
+                        console.log('[Contact Form] API Logs:', result.logs);
+                    }
 
                     formStatus.textContent = 'Merci ! Votre demande a été envoyée avec succès. Nous vous répondrons sous 48h.';
                     formStatus.style.color = '#5cb85c';
